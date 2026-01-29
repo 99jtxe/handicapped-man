@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
-import { Mic, Video, Target, TrendingUp, Clock, Award, FileText, Sparkles, CheckCircle, AlertCircle, HelpCircle, Lightbulb, User, Lock, Mail, Volume2, VolumeX, RefreshCw } from 'lucide-react'
-import { analyzeFullPresentation, checkInappropriateContent, type FullAnalysisResult } from '@/lib/utils'
+import { Mic, Target, Award, FileText, Sparkles, CheckCircle, AlertCircle, HelpCircle, Lightbulb, User, Lock, Mail, Volume2, VolumeX, RefreshCw } from 'lucide-react'
+import { analyzeFullPresentation, checkInappropriateContent, type FullAnalysisResult, type SentenceAnalysisResult } from '@/lib/utils'
 import './App.css'
 
 function App() {
@@ -102,7 +102,7 @@ function App() {
     
     // 개선된 문장들을 조합하여 새로운 대본 생성
     const improvedSentences = analysisResult.sentenceAnalysis
-      .map(item => item.improved)
+      .map((item: SentenceAnalysisResult) => item.improved)
       .join('. ')
     
     // 마지막에 마침표 추가
@@ -730,7 +730,7 @@ function App() {
               </div>
               
               <div className="space-y-4">
-                {analysisResult.sentenceAnalysis.map((analysis, index) => (
+                {analysisResult.sentenceAnalysis.map((analysis: SentenceAnalysisResult, index: number) => (
                   <div key={index} className="border border-slate-200 dark:border-slate-700 rounded-lg p-4">
                     <div className="flex items-start gap-2 mb-3">
                       <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-slate-200 dark:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-300">
@@ -857,7 +857,7 @@ function App() {
               </div>
               
               <div className="space-y-3">
-                {analysisResult.expectedQuestions.map((question, index) => (
+                {analysisResult.expectedQuestions.map((question: string, index: number) => (
                   <div key={index} className="flex gap-3 p-4 bg-slate-50 dark:bg-slate-900/50 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors">
                     <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-orange-200 dark:bg-orange-900/50 text-sm font-bold text-orange-700 dark:text-orange-300 flex-shrink-0">
                       {index + 1}
