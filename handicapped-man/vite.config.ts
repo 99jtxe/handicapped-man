@@ -18,4 +18,5 @@ export default defineConfig({
     host: true, // 모든 네트워크 인터페이스에서 접근 가능
     port: 5177, // 포트 고정
   },
+  base: "/", // Vercel 배포를 위한 base 경로 설정
 })
